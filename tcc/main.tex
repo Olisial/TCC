@@ -1,32 +1,31 @@
 \documentclass[12pt,a4paper]{article}
 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazilian]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{amsmath}
+
+\geometry{a4paper, margin=2.5cm}
+
 \begin{document}
 
-% Elementos pre-textuais
 \input{pre-textuais/01-capa}
-\input{pre-textuais/02-folha-rosto}
-\input{pre-textuais/03-ficha-catalografica}
-\input{pre-textuais/04-agradecimentos}
 \input{pre-textuais/05-resumo}
 \input{pre-textuais/06-abstract}
 \input{pre-textuais/07-lista-figuras}
-\input{pre-textuais/08-lista-tabelas}
-\input{pre-textuais/09-lista-siglas}
 \input{pre-textuais/10-sumario}
 
-% Capitulos
-\input{capitulos/01-introducao}
-\input{capitulos/02-referencial-teorico}
-\input{capitulos/03-metodologia}
-\input{capitulos/04-desenvolvimento-resultados}
-\input{capitulos/05-conclusao}
-
-% Elementos pos-textuais
-\bibliographystyle{plain}
-\bibliography{pos-textuais/referencias}
-\input{pos-textuais/apendice-a-questionario}
-\input{pos-textuais/apendice-b-termo-consentimento}
-\input{pos-textuais/anexo-a-modelo-entrevista}
-\input{pos-textuais/anexo-b-codigo-fonte}
+\input{capitulos/introducao/introducao}
+\input{capitulos/introducao/problema}
+\input{capitulos/introducao/objetivos}
+\input{capitulos/introducao/justificativa}
+\input{capitulos/referencial-teorico}
+\input{capitulos/metodologia}
+\input{capitulos/resultados}
+\input{capitulos/conclusao}
 
 \end{document}

@@ -1,0 +1,43 @@
+# Arquivos gerados pelo LaTeX
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.pdf
+*.synctex.gz
+*.out
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.brf
+*.idx
+*.ilg
+*.ind
+*.bcf
+*.run.xml
+*.dvi
+*.ps
+
+# Pastas de compilação
+build/
+dist/
+out/
+
+# Arquivos do VS Code
+.vscode/
+*.code-workspace
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários
+*.tmp
+*.bak
+*.swp
+*~
+
+# Pastas com dados sensíveis (se houver)
+# env
