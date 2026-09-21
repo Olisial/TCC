@@ -1,6 +1,7 @@
+<<<<<<< HEAD
 \section*{Trabalhos Correlatos}
     Os trabalhos correlatos apresentados nesta seção têm como objetivo analisar pesquisas e soluções tecnológicas relacionadas à utilização de sistemas para auxiliar na gestão, organização e execução de atividades no setor jurídico. A análise desses trabalhos permite identificar diferentes funcionalidades, abordagens e características presentes em sistemas desenvolvidos para atender às necessidades de escritórios de advocacia e profissionais do Direito. Além disso, possibilita estabelecer relações e diferenças entre as soluções existentes e a proposta desenvolvida neste trabalho.
-
+c
     Pimenta et al. (2024) desenvolveram o sistema BRSADV, uma plataforma web voltada ao auxílio das atividades jurídicas, disponibilizando recursos como consultas virtuais, inserção de documentos e análise prévia do perfil jurídico. A proposta demonstra a aplicação de recursos tecnológicos para auxiliar atividades relacionadas ao atendimento e à atuação jurídica, contribuindo para a digitalização e organização de determinadas tarefas realizadas pelos profissionais do Direito.
 
     Outro trabalho analisado foi o artigo intitulado “ADVOCATECH: sistema web para gerenciamento de escritórios de advocacia”, de Dias e Santos (2023), que apresenta uma solução direcionada à gestão de escritórios de advocacia. Segundo os autores, a utilização de uma aplicação web para essa finalidade pode contribuir para a melhoria da eficiência operacional, permitindo que advogados e demais integrantes da equipe direcionem seus esforços às atividades essenciais, reduzindo o tempo destinado à localização de documentos e ao acompanhamento manual de prazos (DIAS; SANTOS, 2023).
