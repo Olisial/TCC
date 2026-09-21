@@ -1,5 +1,6 @@
-<<<<<<< HEAD
-\section*{Trabalhos Correlatos}
+\subsection{Trabalhos correlatos}
+\label{subsec:trabalhos_correlatos}
+
     Os trabalhos correlatos apresentados nesta seção têm como objetivo analisar pesquisas e soluções tecnológicas relacionadas à utilização de sistemas para auxiliar na gestão, organização e execução de atividades no setor jurídico. A análise desses trabalhos permite identificar diferentes funcionalidades, abordagens e características presentes em sistemas desenvolvidos para atender às necessidades de escritórios de advocacia e profissionais do Direito. Além disso, possibilita estabelecer relações e diferenças entre as soluções existentes e a proposta desenvolvida neste trabalho.
 c
     Pimenta et al. (2024) desenvolveram o sistema BRSADV, uma plataforma web voltada ao auxílio das atividades jurídicas, disponibilizando recursos como consultas virtuais, inserção de documentos e análise prévia do perfil jurídico. A proposta demonstra a aplicação de recursos tecnológicos para auxiliar atividades relacionadas ao atendimento e à atuação jurídica, contribuindo para a digitalização e organização de determinadas tarefas realizadas pelos profissionais do Direito.
@@ -28,5 +29,3 @@ c
 
     Nesse contexto, o JurisFlow propõe uma plataforma web direcionada à gestão das atividades de escritórios de advocacia, buscando centralizar informações relacionadas a clientes, pastas, casos, processos, diligências, responsáveis e movimentações em um único ambiente. Como característica da proposta, o sistema busca diferenciar as demandas de acordo com sua etapa, permitindo o acompanhamento de atividades que ainda não possuem processo judicial formalizado e daquelas que já se encontram em fase processual. Dessa forma, o JurisFlow busca contribuir para a organização das informações, o acompanhamento das demandas e a distribuição das atividades entre os responsáveis pelo escritório, sem que os casos dos clientes fiquem paralisados injustificadamente, antes mesmo de serem oficialmente protocolados.
 \thispagestyle{empty}
-
-\subsection*{Análise Comparativa dos Trabalhos Correlatos}
