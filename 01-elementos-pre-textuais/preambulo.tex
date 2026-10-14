@@ -1,0 +1,73 @@
+%
+% Documento: Preâmbulo + Capa
+%
+
+% -------------------------------
+% Pacotes necessários
+% -------------------------------
+\usepackage{lmodern}     % Fonte Latin Modern
+\usepackage{listings}    % Ambientes de código
+\usepackage{tocloft}     % Personalização das listas
+\usepackage{chngcntr}    % Necessário para \counterwithout / \counterwithin
+\usepackage{tabularx}    % Para colunas que se ajustam automaticamente
+\usepackage{booktabs}    % Para linhas horizontais profissionais
+
+% -------------------------------
+% Configuração de listagens
+% -------------------------------
+\renewcommand{\lstlistingname}{Código}
+
+% Numeração contínua (sem o número do capítulo)
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+
+% Criação da "Lista de Códigos" conforme ABNT
+\begingroup\makeatletter
+\let\newcounter\@gobble
+\let\setcounter\@gobbletwo
+\globaldefs\@ne
+\let\c@loldepth\@ne
+\newlistof{listings}{lol}{\lstlistlistingname}
+\newlistentry{lstlisting}{lol}{0}
+\endgroup
+
+\renewcommand{\cftlstlistingaftersnum}{\hfill--\hfill}
+
+\let\oldlstlistoflistings\lstlistoflistings
+\renewcommand{\lstlistoflistings}{%
+  \begingroup%
+  \let\oldnumberline\numberline%
+  \renewcommand{\numberline}{\lstlistingname\space\oldnumberline}%
+  \oldlstlistoflistings%
+  \endgroup}
+
+% Estilo para códigos
+\lstdefinestyle{master-thesis}{
+  basicstyle=\ttfamily\small,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=tb,
+  columns=fullflexible,
+  showstringspaces=false,
+  captionpos=b,
+  breaklines=true,
+  tabsize=2
+}
+\lstset{style=master-thesis}
+
+% -------------------------------
+% ==== DADOS DA CAPA (ÚNICO LUGAR PARA EDITAR) ====
+
+\instituicao{CENTRO UNIVERSITÁRIO DE OURINHOS}
+\departamento{CURSO: ENGENHARIA DE SOFTWARE}
+\titulotb{Plataforma Web para Gestão de Escritórios de Advocacia}
+
+\nomeautor{%
+  \textbf{Gabriel De Oliveira Cordeiro}\\
+  \textbf{José Gabriel Celso Lima}\\
+  \textbf{Laís de Oliveira}\\
+  \textbf{Milena Maria Romano da Silva}%
+}
+
+\localapresentacao{Ourinhos -- São Paulo}
+\anoapresentacao{2026}

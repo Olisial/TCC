@@ -1,0 +1,64 @@
+%
+% Documento: Citações
+%
+
+\section{Citações (ABNT NBR 10520)}
+
+Esta seção apresenta exemplos práticos de citação conforme a ABNT NBR 10520.
+
+\subsection{Citação direta curta (até 3 linhas)}
+Deve permanecer no corpo do parágrafo, entre aspas duplas, com indicação de autor, ano e página:
+\begin{flushleft}
+\textit{Ex.:} De acordo com \citeonline[p.~249]{marshall1980}, ``não se pode discutir se o valor e os preços são governados pela utilidade ou pelo custo de produção''.
+\end{flushleft}
+
+Outras variações úteis:
+\begin{itemize}
+  \item Autor no texto + ano entre parênteses: \citeauthor{marshall1980} (\citeyear{marshall1980}) afirma que ``\ldots'' \cite[p.~249]{marshall1980}.
+  \item Apenas referência entre parênteses: ``\ldots'' \cite[p.~249]{marshall1980}.
+\end{itemize}
+
+\subsection{Citação direta longa (mais de 3 linhas)}
+Deve ir em bloco destacado, com recuo de 4\,cm da margem esquerda, fonte menor e sem aspas. 
+No \texttt{abntex2}, use o ambiente \texttt{citacao}, que já aplica o padrão:
+\begin{citacao}
+Da mesma forma que não se pode afirmar se é a lâmina inferior ou superior de uma tesoura que corta uma folha de papel, também não se pode discutir se o valor e os preços são governados pela utilidade ou pelo custo de produção. (MARSHALL, 1980, p.~249)
+\end{citacao}
+
+\subsection{Citação indireta (paráfrase)}
+Reproduz a ideia do autor com suas palavras. Página é opcional; recomenda-se quando ajuda o leitor.
+\begin{flushleft}
+\textit{Ex.:} A produção acadêmica sobre varejo no Brasil é desproporcional à relevância do segmento na economia \cite{angelo1993}.
+\end{flushleft}
+Variações:
+\begin{itemize}
+  \item \citeauthor{angelo1993} (\citeyear{angelo1993}) argumentam que \ldots
+  \item Conforme apontado na literatura \cite{tanenbaum1995sistemas,de2017sistema}, \ldots
+\end{itemize}
+
+\subsection{Citação de citação (apud)}
+Use somente quando o original não puder ser consultado. Indique o autor original, seguido de ``apud'' e do autor efetivamente consultado, com página.
+\begin{flushleft}
+\textit{Ex. no corpo do texto:} Enguita (apud \citeauthor{silva1991}, \citeyear{silva1991}, p.~21) chegou às mesmas conclusões.
+\end{flushleft}
+
+Também é possível registrar em nota de rodapé a fonte consultada:
+\begin{flushleft}
+\textit{Ex. com nota:} Enguita\footnote{Informação citada por \citeauthor{silva1991} (\citeyear{silva1991}, p.~21).} chegou às mesmas conclusões.
+\end{flushleft}
+
+\subsection{Comandos úteis (abntex2cite)}
+\begin{itemize}
+  \item \verb|\cite{chave}| → (AUTOR, ano)
+  \item \verb|\citeonline{chave}| → AUTOR (ano)
+  \item \verb|\citeauthor{chave}| → AUTOR
+  \item \verb|\citeyear{chave}| → ano
+  \item \verb|\cite[p.~10]{chave}| → (AUTOR, ano, p.~10)
+\end{itemize}
+
+\subsection{Observações finais}
+\begin{itemize}
+  \item Para siglas: escreva por extenso na primeira ocorrência, seguidas da sigla: Associação Brasileira do Trabalhador (ABT).
+  \item As referências completas devem aparecer na lista de referências ao final do trabalho.
+\end{itemize}
+

@@ -1,0 +1,120 @@
+\documentclass[oneside]{estilo}
+
+% ---------------------------------------------------------------------------
+% PACOTES
+% ---------------------------------------------------------------------------
+\usepackage[alf, abnt-emphasize=bf, recuo=0cm, abnt-etal-cite=2, abnt-etal-list=0]{abntex2cite}  % Citações ABNT
+\usepackage[utf8]{inputenc}                         % Acentuação direta
+\usepackage[T1]{fontenc}                            % Codificação da fonte em 8 bits
+\usepackage{graphicx}                               % Inserir figuras
+\usepackage{amsfonts, amssymb, amsmath}             % Fonte e símbolos matemáticos
+\usepackage{booktabs}                               % Comandos para tabelas
+\usepackage{verbatim}                               % Texto literal
+\usepackage{multirow, array}                        % Múltiplas linhas e colunas em tabelas
+\usepackage{indentfirst}                            % Endenta o primeiro parágrafo de cada seção
+\usepackage{microtype}                              % Melhorias de justificação
+\usepackage[algoruled, portuguese]{algorithm2e}     % Algoritmos
+\usepackage{float}                                  % Floats
+%\usepackage{times}                                 % Usa a fonte Times
+
+\usepackage{color}
+\usepackage{chronosys}
+\usepackage{pdflscape}
+%\usepackage{tabu}                                  % deixado comentado (evita erro se não instalado)
+\usepackage{makecell}
+\usepackage{nameref}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{chngcntr}
+\usepackage{colortbl}
+\usepackage[htt]{hyphenat}
+\usepackage{mdframed}
+
+\mdfsetup{skipabove=1.5\topskip,skipbelow=0.5\topskip}
+\mdfdefinestyle{pp}{%
+	linecolor=black,
+	outerlinewidth=.5pt,
+	roundcorner=5pt,
+	innertopmargin=8pt,
+	innerbottommargin=0.5\baselineskip,
+	usetwoside=false
+}
+
+%\usepackage{minitoc}
+%\dominitoc% Initialization
+
+\newcommand{\enumerateletter}[2]{\textbf{#1\textsubscript{#2}}}
+
+% ---------------------------------------------------------------------------
+% PREÂMBULO DO DOCUMENTO  (usa \input, NÃO \include)
+% ---------------------------------------------------------------------------
+\input{01-elementos-pre-textuais/preambulo}
+
+\usepackage[a4paper, top=3.0cm, bottom=2.0cm, left=3.0cm, right=2.0cm]{geometry}
+
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}       % proposed
+\newcommand{\red}[1]{\textcolor{red}{#1}}         % to be removed
+\newcommand{\green}[1]{\textcolor{green}{#1}}     % to be discussed?
+\newcommand{\magenta}[1]{\textcolor{magenta}{#1}} % warning
+
+\settocdepth{subsection}
+
+% ---------------------------------------------------------------------------
+% HIPERLINKS / PDF
+% ---------------------------------------------------------------------------
+\makeatletter
+\hypersetup{
+    portuguese,
+    colorlinks,
+    linkcolor=blue,
+    citecolor=blue,
+    filecolor=black,
+    urlcolor=black,
+    breaklinks=true,
+    pdftitle={\imprimirtitulotb},
+    pdfauthor={\imprimirnomeautor}
+}
+\makeatother
+
+\renewcommand{\algorithmautorefname}{Algoritmo}
+\def\equationautorefname~#1\null{Equa\c c\~ao~(#1)\null}
+
+\makeindex
+
+
+\begin{document}
+ 
+    \frenchspacing
+
+    \pretextual
+    \include{01-elementos-pre-textuais/dados}        % único lugar onde você edita a capa
+    \include{01-elementos-pre-textuais/capa}         % imprime a capa
+    \include{01-elementos-pre-textuais/resumoPt}     % Resumo na língua vernácula
+    \include{01-elementos-pre-textuais/resumoEn}     % Resumo em língua estrangeira
+    \include{01-elementos-pre-textuais/listaFiguras} % Lista de figuras
+    \include{01-elementos-pre-textuais/listaTabelas} % Lista de tabelas (se usar, descomente)
+
+    \sumario
+
+\begin{OnehalfSpacing}
+
+    % -----------------------------------------------------------------------
+    % ELEMENTOS TEXTUAIS
+    % -----------------------------------------------------------------------
+    \textual
+        \include{./02-elementos-textuais/introducao}
+        \include{./02-elementos-textuais/fundamentacao}
+        \include{./02-elementos-textuais/metodologia}
+        \include{./02-elementos-textuais/resultados}
+        \include{./02-elementos-textuais/ambientes}
+        \include{./02-elementos-textuais/conclusao}
+
+\end{OnehalfSpacing}
+
+    % -----------------------------------------------------------------------
+    % ELEMENTOS PÓS-TEXTUAIS
+    % -----------------------------------------------------------------------
+    \postextual
+    \include{./03-elementos-pos-textuais/referencias}
+
+\end{document}
