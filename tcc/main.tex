@@ -1,34 +1,69 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[
+    12pt,
+    a4paper,
+    oneside,
+    openright,
+    brazilian,
+    chapter=TITLE,
+    section=TITLE,
+    sumario=abnt-6027-2012
+]{estilo}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[brazilian]{babel}
-\usepackage{geometry}
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{float}
 \usepackage{amsmath}
 
-\geometry{a4paper, margin=2.5cm}
+\usepackage[alf]{abntex2cite}
 
 \begin{document}
+
+% ------------------------------------------------------------------
+% PRÉ-TEXTUAIS
+% ------------------------------------------------------------------
+\pretextual
 
 \input{pre-textuais/01-capa}
 \input{pre-textuais/05-resumo}
 \input{pre-textuais/06-abstract}
 \input{pre-textuais/07-lista-figuras}
+
+% Sumário: links em azul somente aqui
+\hypersetup{
+    linkcolor=blue,
+    citecolor=black,
+    urlcolor=black
+}
 \input{pre-textuais/10-sumario}
+
+% A partir daqui, remove cor e caixas de links
+\hypersetup{hidelinks}
+
+% ------------------------------------------------------------------
+% TEXTUAIS
+% ------------------------------------------------------------------
+\textual
 
 \input{capitulos/introducao/introducao}
 \input{capitulos/introducao/problema}
 \input{capitulos/introducao/objetivos}
 \input{capitulos/introducao/justificativa}
-\input{capitulos/Fundamentacao/Introducao}
-\input{capitulos/Fundamentacao/2.1Transformacao_Digital_no_Setor_Juridico}
-\input{capitulos/Fundamentacao/2.2Sistemas_de_Gestão_e_Organização_de_Escritórios_de_Advocacia}
-\input{capitulos/Fundamentacao/2.3Trabalhos_Correlatos}
+
+\input{capitulos/fundamentacao/introducao}
+\input{capitulos/fundamentacao/2.1-transformacao-digital}
+\input{capitulos/fundamentacao/2.2-sistemas-gestao}
+\input{capitulos/fundamentacao/2.3-trabalhos-correlatos}
+
 \input{capitulos/metodologia}
 \input{capitulos/resultados}
 \input{capitulos/conclusao}
+
+% ------------------------------------------------------------------
+% PÓS-TEXTUAIS
+% ------------------------------------------------------------------
+\postextual
+\bibliography{referencias}
 
 \end{document}
