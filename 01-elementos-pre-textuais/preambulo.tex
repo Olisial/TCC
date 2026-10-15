@@ -5,21 +5,20 @@
 % -------------------------------
 % Pacotes necessários
 % -------------------------------
-\usepackage{lmodern}     % Fonte Latin Modern
-\usepackage{listings}    % Ambientes de código
-\usepackage{tocloft}     % Personalização das listas
-\usepackage{chngcntr}    % Necessário para \counterwithout / \counterwithin
-\usepackage{tabularx}    % Para colunas que se ajustam automaticamente
-\usepackage{booktabs}    % Para linhas horizontais profissionais
+\usepackage{lmodern}
+\usepackage{listings}
+\usepackage{tocloft}
+\usepackage{chngcntr}
+\usepackage{tabularx}
+\usepackage{booktabs}
 
 % -------------------------------
 % Configuração de listagens
 % -------------------------------
 \renewcommand{\lstlistingname}{Código}
 
-% Numeração contínua (sem o número do capítulo)
-\counterwithout{figure}{chapter}
-\counterwithout{table}{chapter}
+% Numeração contínua já configurada no estilo.cls
+% (não duplicar aqui)
 
 % Criação da "Lista de Códigos" conforme ABNT
 \begingroup\makeatletter
@@ -56,7 +55,8 @@
 \lstset{style=master-thesis}
 
 % -------------------------------
-% ==== DADOS DA CAPA (ÚNICO LUGAR PARA EDITAR) ====
+% ==== DADOS DA CAPA ====
+% -------------------------------
 
 \instituicao{CENTRO UNIVERSITÁRIO DE OURINHOS}
 \departamento{CURSO: ENGENHARIA DE SOFTWARE}
