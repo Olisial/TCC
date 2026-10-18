@@ -1,117 +1,614 @@
 \chapter{MATERIAIS E MÉTODOS}
-Esta seção apresenta os materiais e métodos utilizados no desenvolvimento do
-JurisFlow, uma plataforma web destinada ao gerenciamento de informações e atividades
-de escritórios de advocacia. São apresentados o ambiente tecnológico utilizado, as etapas
-adotadas durante o desenvolvimento, o levantamento e a organização dos requisitos, a
-modelagem do banco de dados, a implementação do módulo inicial e os procedimentos
-utilizados para a verificação do sistema. A definição dos materiais e métodos considerou as
-funcionalidades estabelecidas na proposta do projeto, bem como o refinamento do escopo
-realizado ao longo do desenvolvimento. O sistema foi planejado com o objetivo de centralizar informações relacionadas a usuários, clientes, pastas, processos, diligências, prazos,
-notificações e histórico de atividades, buscando contribuir para uma maior organização e
-controle das atividades do escritório. Dessa forma, os procedimentos adotados foram estruturados de modo a acompanhar as etapas de construção da plataforma, desde a definição
-dos requisitos até a implementação e verificação das funcionalidades desenvolvidas.
-
-\section{MATERIAIS E FERRAMENTAS UTILIZADAS}
-O desenvolvimento do JurisFlow contou com ferramentas de programação, controle de versão, modelagem de dados, organização de tarefas e verificação das requisições da aplicação. A seleção dessas ferramentas considerou as necessidades do projeto e a possibilidade de organizar o código-fonte, estruturar os dados e acompanhar as atividades da equipe.
-
-O Visual Studio Code foi utilizado como ambiente de desenvolvimento, oferecendo suporte à edição dos arquivos e à utilização de extensões. O Git foi empregado para o controle de versão, enquanto o GitHub foi utilizado para hospedar o repositório e compartilhar o código-fonte entre os integrantes. Para a organização das atividades, utilizou-se o Trello. A modelagem do banco de dados foi realizada no dbdiagram.io, e o PlantUML foi utilizado na elaboração dos diagramas de casos de uso. Para testar as rotas da API, utilizou-se a extensão Thunder Client, integrada ao Visual Studio Code.
-
-O PostgreSQL foi adotado como sistema gerenciador de banco de dados. O Docker foi utilizado para executar o banco de dados em um ambiente conteinerizado, contribuindo para padronizar a configuração de desenvolvimento.
-
+Esta seção apresenta os materiais e os métodos utilizados no desenvolvimento do JurisFlow, uma plataforma web destinada ao gerenciamento de informações e atividades de escritórios de advocacia. São descritos o ambiente tecnológico utilizado, as etapas adotadas durante o desenvolvimento, o levantamento e a organização dos requisitos, a modelagem do banco de dados, a implementação do módulo inicial e os procedimentos utilizados para verificação do sistema.
+A definição dos materiais e métodos foi realizada considerando as funcionalidades estabelecidas na proposta do projeto e o refinamento do escopo realizado durante o desenvolvimento. O sistema foi planejado para centralizar informações relacionadas a usuários, clientes, pastas, processos, diligências, prazos, notificações e histórico de atividades, buscando proporcionar maior organização e controle das informações do escritório.
 
 \section{TECNOLOGIAS DE DESENVOLVIMENTO}
-O desenvolvimento do JurisFlow utilizou JavaScript como principal linguagem de programação para a implementação da lógica da aplicação. A escolha dessa linguagem está relacionada à sua utilização no desenvolvimento web e à possibilidade de empregá-la tanto no frontend quanto no backend. Essa característica permite utilizar a mesma linguagem em diferentes partes da aplicação. Conforme apontam Cruz et al. (2018), o JavaScript deixou de ser utilizado exclusivamente em aplicações executadas em navegadores e passou a ser empregado também no desenvolvimento de outros tipos de software, incluindo aplicações para dispositivos móveis e computadores.
 
-Para a implementação do backend, foi utilizado o Node.js, ambiente de execução que permite executar código JavaScript fora do navegador. Sua arquitetura é orientada a eventos e utiliza operações de entrada e saída não bloqueantes, características que favorecem o processamento de múltiplas requisições. Segundo Godinho (2023), a utilização do Node.js no desenvolvimento de aplicações está relacionada, entre outros aspectos, ao desempenho proporcionado pelo motor V8, desenvolvido pelo Google. No JurisFlow, o Node.js foi empregado no processamento das requisições e na comunicação entre a aplicação e o banco de dados.
+Para o desenvolvimento do JurisFlow, foi utilizada a linguagem de programação
+JavaScript como principal linguagem para implementação da lógica da aplicação.
+A escolha da linguagem está relacionada à sua ampla utilização no desenvolvimento
+web e à possibilidade de empregá-la tanto no \textit{frontend} quanto no
+\textit{backend}, permitindo a utilização de uma mesma linguagem em diferentes
+partes da aplicação. Conforme apontam Cruz et al. (2018), o JavaScript deixou de
+ser utilizado exclusivamente em aplicações executadas em navegadores e passou a
+ser empregado também no desenvolvimento de outros tipos de software, incluindo
+aplicações para dispositivos móveis e computadores. Essa característica contribui
+para a utilização da linguagem em diferentes contextos de desenvolvimento.
 
-O Visual Studio Code foi utilizado como ambiente de desenvolvimento por oferecer recursos de edição de código e extensões voltadas ao trabalho com JavaScript e Node.js. A integração com o Git também contribuiu para o gerenciamento das alterações realizadas durante o desenvolvimento. Em conjunto com o GitHub, o controle de versão possibilitou centralizar os arquivos do projeto e organizar o trabalho colaborativo por meio da utilização de ramificações (\textit{branches}).
+Para a implementação do \textit{backend}, foi utilizado o ambiente de execução
+Node.js. A tecnologia permite a execução de código JavaScript fora do navegador
+e utiliza uma arquitetura orientada a eventos e operações de entrada e saída não
+bloqueantes. Essa característica possibilita o desenvolvimento de aplicações
+capazes de lidar com múltiplas requisições de forma eficiente. Segundo \citeonline{godinho2023}, 
+a utilização do Node.js no desenvolvimento de estruturas de backend está
+relacionada ao desempenho proporcionado pelo motor V8, desenvolvido pelo Google.
+O ambiente permite a execução do JavaScript fora do contexto dos navegadores,
+sendo utilizado no desenvolvimento de aplicações web. No JurisFlow, o Node.js foi
+empregado na implementação das funcionalidades relacionadas ao processamento das
+requisições e à comunicação entre a aplicação e o banco de dados.
 
-Para o armazenamento e o gerenciamento dos dados, foi utilizado o PostgreSQL, um sistema gerenciador de banco de dados relacional. Sua utilização atende à necessidade de estruturar e relacionar informações referentes a usuários, clientes, pastas, processos e diligências. Conforme aponta Carvalho (2017), o PostgreSQL apresenta características relacionadas à integridade, à segurança e à consistência dos dados, aspectos relevantes para sistemas que trabalham com entidades relacionadas.
+O Ambiente de Desenvolvimento Integrado (IDE) utilizado foi o Visual Studio Code.
+A ferramenta foi escolhida por oferecer um ambiente de desenvolvimento leve e
+extensível, além de disponibilizar recursos e extensões voltados ao desenvolvimento
+com JavaScript e Node.js. Também foram utilizados seus recursos de integração com
+o Git, contribuindo para o controle e a organização do código durante o
+desenvolvimento do projeto.
 
-Por fim, o Docker foi utilizado para a conteinerização do ambiente de desenvolvimento, principalmente na execução do banco de dados PostgreSQL. Essa abordagem contribuiu para padronizar a configuração utilizada pela equipe e reduzir possíveis diferenças entre os ambientes de desenvolvimento. De acordo com Alencar (2025), ferramentas de conteinerização, como o Docker, podem minimizar inconsistências entre ambientes, facilitando a configuração e a execução das aplicações.
+Para o controle de versão e a hospedagem do código-fonte, foi utilizado o GitHub
+em conjunto com o Git. A ferramenta possibilitou centralizar os arquivos do projeto
+e organizar o desenvolvimento colaborativo por meio do controle de versões. Também
+foram utilizadas ramificações (\textit{branches}) para organizar as alterações
+realizadas durante o desenvolvimento e facilitar o gerenciamento das diferentes
+funcionalidades da aplicação.
 
-\section{FERRAMENTAS DE MODELAGEM E ARQUITETURA}
+Para o armazenamento e gerenciamento dos dados, foi utilizado o sistema gerenciador
+de banco de dados PostgreSQL. A escolha de um banco de dados relacional está
+relacionada à necessidade de estruturar e relacionar informações como usuários,
+clientes, pastas, processos e diligências. Conforme aponta \citeonline{carvalho2017}, o
+PostgreSQL apresenta características relacionadas à integridade, segurança e
+consistência dos dados, aspectos relevantes para sistemas que trabalham com
+diferentes entidades relacionadas.
+
+Também foi utilizado o Docker como ferramenta de virtualização e conteinerização,
+principalmente para a execução do banco de dados PostgreSQL. A utilização de
+contêineres possibilitou padronizar o ambiente de desenvolvimento e reduzir a
+ocorrência de diferenças de configuração entre os ambientes utilizados pela equipe.
+De acordo com \citeonline{alencar2025}, ferramentas de conteinerização como o Docker podem
+contribuir para minimizar inconsistências entre diferentes ambientes de
+desenvolvimento, facilitando a configuração e a execução das aplicações.
+
+\subsection{FERRAMENTAS DE MODELAGEM E ARQUITETURA}
+
 Para auxiliar na modelagem e na representação da arquitetura do sistema, foi
-utilizada a ferramenta PlantUML para a elaboração dos diagramas de casos de uso. Esses
-diagramas foram utilizados para representar, de forma visual, as principais funcionalidades
-do JurisFlow e sua interação com os diferentes usuários do sistema. Foram elaborados
-quatro diagramas de casos de uso, organizados de acordo com as funcionalidades e os
-diferentes contextos de utilização da plataforma, permitindo representar o escopo do
-sistema de forma estruturada e facilitar a compreensão das interações entre os usuários e15
-as funcionalidades disponibilizadas.
-\begin{figure}[H]
-    \centering
-    \caption{Diagrama de casos de uso: Autenticação, Usuários e Administração.}
-    \label{fig:1}
-    \includegraphics[width=0.9\textwidth]{04-figuras/diagrama1.jpeg}
-\end{figure}
-
-A Figura \textcolor{blue}{\ref{fig:1}}apresenta dois atores principais, com responsabilidades distintas
-no sistema. O Administrador Chefe é responsável pelo cadastro de novos usuários. Nesse
-processo, o caso de uso de cadastro inclui obrigatoriamente a ação de Vincular Perfil
-e Permissões, identificada pelo ID do perfil, garantindo que cada usuário cadastrado
-tenha as permissões correspondentes ao seu perfil de acesso. O Usuário Geral realiza o
-processo de login por meio da inserção de nome e senha. Como mecanismo de segurança
-e rastreabilidade, esse processo inclui automaticamente a ação de Gerar Log Auditável,
-responsável por registrar as ações realizadas e o histórico de atividades do usuário no
-sistema.
+utilizada a ferramenta PlantUML para a elaboração dos diagramas de casos de uso.
+Esses diagramas foram utilizados para representar, de forma visual, as principais
+funcionalidades do JurisFlow e sua interação com os diferentes usuários do sistema.
+Foram elaborados quatro diagramas de casos de uso, organizados de acordo com as
+funcionalidades e os diferentes contextos de utilização da plataforma, permitindo
+representar o escopo do sistema de forma estruturada e facilitar a compreensão das
+interações entre os usuários e as funcionalidades disponibilizadas.
 
 \begin{figure}[H]
-    \centering
-    \caption{Diagrama de casos de uso: Gestão de Clientes, Casos e Processos.}
-    \label{fig:2}
-    \includegraphics[width=0.9\textwidth]{04-figuras/diagrama2.jpeg}
+  \caption{Diagrama de casos de uso: Autenticação, Usuários e Administração.}
+  \label{fig:casos-uso-autenticacao}
+  \centering
+  \includegraphics[width=0.9\textwidth]{04-figuras/diagrama1.jpeg}
+  \fonte{Elaborado pelos autores (2026).}
 \end{figure}
+
+A Figura~\ref{fig:casos-uso-autenticacao} apresenta dois atores principais, com
+responsabilidades distintas no sistema. O Administrador Chefe é responsável pelo
+cadastro de novos usuários. Nesse processo, o caso de uso de cadastro inclui
+obrigatoriamente a ação de Vincular Perfil e Permissões, identificada pelo ID do
+perfil, garantindo que cada usuário cadastrado tenha as permissões correspondentes
+ao seu perfil de acesso. O Usuário Geral realiza o processo de login por meio da
+inserção de nome e senha. Como mecanismo de segurança e rastreabilidade, esse
+processo inclui automaticamente a ação de Gerar Log Auditável, responsável por
+registrar as ações realizadas e o histórico de atividades do usuário no sistema.
+
+\begin{figure}[H]
+  \caption{Diagrama de casos de uso: Gestão de Clientes, Casos e Processos.}
+  \label{fig:casos-uso-clientes}
+  \centering
+  \includegraphics[width=0.9\textwidth]{04-figuras/diagrama2.jpeg}
+  \fonte{Elaborado pelos autores (2026).}
+\end{figure}
+
 Um detalhe importante na modelagem é que tanto o Advogado quanto o Assistente
-Jurídico possuem o mesmo nível de acesso e as mesmas permissões dentro deste escopo.
-Ambos os profissionais podem Atualizar a Situação do Processo, Consultar Clientes
-Cadastrados e iniciar o fluxo de Cadastrar Novo Cliente. Quando um dos profissionais
-realiza o cadastro de um novo cliente, o sistema executa obrigatoriamente duas ações:
-Identificar o Tipo de Cliente, verificando se o cadastro corresponde a CPF ou CNPJ, e
-Criar Caso Automaticamente. Após a criação automática do caso, o sistema também
-realiza a etapa de Classificar a Fase do Caso, definindo se o caso se encontra na fase
-Pré-Processual ou Processual.
+Jurídico possuem o mesmo nível de acesso e as mesmas permissões dentro deste
+escopo. Ambos os profissionais podem Atualizar a Situação do Processo, Consultar
+Clientes Cadastrados e iniciar o fluxo de Cadastrar Novo Cliente. Quando um dos
+profissionais realiza o cadastro de um novo cliente, o sistema executa
+obrigatoriamente duas ações: Identificar o Tipo de Cliente, verificando se o
+cadastro corresponde a CPF ou CNPJ, e Criar Caso Automaticamente. Após a criação
+automática do caso, o sistema também realiza a etapa de Classificar a Fase do Caso,
+definindo se o caso se encontra na fase Pré-Processual ou Processual
+(Figura~\ref{fig:casos-uso-clientes}).
 
 \begin{figure}[H]
-    \centering
-    \caption{Diagrama de casos de uso: Central de Diligências e Notificações Preventivas.}
-    \label{fig:3}
-    \includegraphics[width=0.9\textwidth]{04-figuras/diagrama3.jpeg}
+  \caption{Diagrama de casos de uso: Central de Diligências e Notificações Preventivas.}
+  \label{fig:casos-uso-diligencias}
+  \centering
+  \includegraphics[width=0.9\textwidth]{04-figuras/diagrama3.jpeg}
+  \fonte{Elaborado pelos autores (2026).}
 \end{figure}
 
 O módulo apresenta dois atores responsáveis pela interação direta com suas
-funcionalidades, além de um ator de destino relacionado à execução de uma das ações.
-Nesse contexto, o Criador da Pasta, representado por um Advogado ou Assistente Jurídico,
-é responsável por executar a ação de Forçar Criação da Primeira Diligência, garantindo
-que, após a criação da pasta, seja registrada a primeira atividade relacionada ao caso. O
-fluxo também contempla duas extensões condicionais baseadas em regras de negócio. A
-primeira é Exigir Horário Específico, acionada quando a categoria do caso corresponde a
-uma audiência, situação na qual é necessário registrar, além da data, um horário específico
-para o compromisso. A segunda é Atribuir Prazo Padrão de 30 dias, utilizada como
-comportamento de fallback quando não for informado um prazo maior, garantindo que
-nenhuma diligência seja criada sem uma data de vencimento definida. Além dos atores que
-interagem diretamente com o módulo, existe o ator Sistema Automatizado, responsável pela
-execução de rotinas em segundo plano relacionadas ao controle temporal das atividades.
-Entre suas responsabilidades está Disparar a Régua Regressiva de Notificações, enviando
-alertas preventivos nos períodos de 7, 3 e 1 dia antes do vencimento, bem como no próprio
-dia do vencimento. O Sistema Automatizado também é responsável por Varrer o Banco e
-Alertar sobre Pastas Inativas, realizando o monitoramento periódico das pastas e processos
-cadastrados. Quando uma pasta permanece sem atualização por período superior a 30
-dias, o sistema gera uma notificação para alertar a equipe responsável, contribuindo para
+funcionalidades, além de um ator de destino relacionado à execução de uma das
+ações. Nesse contexto, o Criador da Pasta, representado por um Advogado ou
+Assistente Jurídico, é responsável por executar a ação de Forçar Criação da
+Primeira Diligência, garantindo que, após a criação da pasta, seja registrada a
+primeira atividade relacionada ao caso. O fluxo também contempla duas extensões
+condicionais baseadas em regras de negócio. A primeira é Exigir Horário Específico,
+acionada quando a categoria do caso corresponde a uma audiência, situação na qual
+é necessário registrar, além da data, um horário específico para o compromisso.
+A segunda é Atribuir Prazo Padrão de 30 dias, utilizada como comportamento de
+\textit{fallback} quando não for informado um prazo maior, garantindo que nenhuma
+diligência seja criada sem uma data de vencimento definida
+(Figura~\ref{fig:casos-uso-diligencias}).
+
+Além dos atores que interagem diretamente com o módulo, existe o ator Sistema
+Automatizado, responsável pela execução de rotinas em segundo plano relacionadas
+ao controle temporal das atividades. Entre suas responsabilidades está Disparar a
+Régua Regressiva de Notificações, enviando alertas preventivos nos períodos de 7,
+3 e 1 dia antes do vencimento, bem como no próprio dia do vencimento. O Sistema
+Automatizado também é responsável por Varrer o Banco e Alertar sobre Pastas
+Inativas, realizando o monitoramento periódico das pastas e processos cadastrados.
+Quando uma pasta permanece sem atualização por período superior a 30 dias, o
+sistema gera uma notificação para alertar a equipe responsável, contribuindo para
 o acompanhamento contínuo dos casos e para a redução de processos sem movimentação.
 
 \begin{figure}[H]
-    \centering
-    \caption{Diagrama de casos de uso:  Painel Gerencial (Métricas).}
-    \label{fig:4}
-    \includegraphics[width=0.9\textwidth]{04-figuras/diagrama4.jpeg}
+  \caption{Diagrama de casos de uso: Painel Gerencial (Métricas).}
+  \label{fig:casos-uso-painel}
+  \centering
+  \includegraphics[width=0.9\textwidth]{04-figuras/diagrama4.jpeg}
+  \fonte{Elaborado pelos autores (2026).}
 \end{figure}
 
 Para encerrar a apresentação dos casos de uso, o quarto diagrama representa o
-módulo de Painel Gerencial (Métricas) do JurisFlow, destinado ao acompanhamento e à
-supervisão das atividades do escritório. Nesse módulo, o Administrador Chefe é o ator
-responsável por acessar a funcionalidade Visualizar Dashboard de Produtividade, por
-meio da qual são disponibilizadas informações relacionadas ao desempenho da equipe e ao
-andamento das atividades.
+módulo de Painel Gerencial (Métricas) do JurisFlow, destinado ao acompanhamento
+e à supervisão das atividades do escritório. Nesse módulo, o Administrador Chefe
+é o ator responsável por acessar a funcionalidade Visualizar Dashboard de
+Produtividade, por meio da qual são disponibilizadas informações relacionadas ao
+desempenho da equipe e ao andamento das atividades (Figura~\ref{fig:casos-uso-painel}).
 
-\section{GESTÃO E ORGANIZAÇÃO DO PROJETO}
+\subsection{ORGANIZAÇÃO DAS ATIVIDADES (Trello/Kanban)}
+
+O gerenciamento de tarefas, o acompanhamento dos prazos e a distribuição das
+responsabilidades da equipe foram realizados por meio da plataforma Trello. A
+organização das atividades seguiu o modelo de quadro Kanban, estruturado em
+colunas como ``Documentos Introdutórios'', ``Desenvolvimento'', ``Diagramas'' e
+``Concluído''. Essa organização permitiu acompanhar o andamento das atividades e
+das entregas relacionadas ao banco de dados, aos protótipos de tela e à elaboração
+do artigo acadêmico. A Figura~\ref{fig:trello} apresenta o quadro utilizado pela
+equipe para a organização e o acompanhamento das atividades do projeto.
+
+\begin{figure}[H]
+  \caption{Quadro Kanban utilizado no Trello.}
+  \label{fig:trello}
+  \centering
+  \includegraphics[width=0.9\textwidth]{04-figuras/trello.jpeg}
+  \fonte{Elaborado pelos autores (2026).}
+\end{figure}
+
+As tarefas foram divididas por todos os integrantes do grupo, bem como com o
+orientador, no qual todos acompanham o desenvolvimento do trabalho de conclusão
+de curso.
+
+\subsection{CONTROLE DE VERSÃO(Git/GitHub)}
+
+Além do gerenciamento de tarefas realizado por meio do Trello, a organização do
+projeto também contou com o uso do Git, um sistema de controle de versão
+distribuído. O repositório foi hospedado na plataforma GitHub e utilizado para
+armazenar e versionar todo o código-fonte da aplicação, tanto do \textit{backend}
+quanto do \textit{frontend}, além dos documentos relacionados ao trabalho.
+
+\begin{figure}[H]
+  \caption{Repositório do projeto no GitHub.}
+  \label{fig:github}
+  \centering
+  \includegraphics[width=0.9\textwidth]{04-figuras/git.jpeg}
+  \fonte{Elaborado pelos autores (2026).}
+\end{figure}
+
+O uso do Git permitiu que os membros da equipe trabalhassem de forma colaborativa
+e simultânea, mantendo o histórico completo de alterações realizadas no código.
+Por meio da criação de ramificações (\textit{branches}) para o desenvolvimento de
+novas funcionalidades e da posterior integração à ramificação principal, foi
+possível evitar conflitos e garantir que as versões estáveis do sistema estivessem
+sempre disponíveis. Dessa forma, o repositório Git complementou a gestão realizada
+no Trello, assegurando a rastreabilidade das mudanças, a segurança do que foi
+produzido e a organização do código ao longo de todo o desenvolvimento
+(Figura~\ref{fig:github}).
+
+
+\section{LEVANTAMENTO, MODELAGEM E DEFINIÇÃO DOS REQUISITOS}
+
+O levantamento dos requisitos foi realizado a partir da análise da proposta do
+sistema e das necessidades identificadas para o gerenciamento das atividades de
+um escritório de advocacia. Os requisitos foram organizados de acordo com as
+funcionalidades que deveriam ser disponibilizadas aos diferentes usuários da
+plataforma.
+
+\subsection{VISÃO GERAL DO PRODUTO}
+
+O JurisFlow é uma plataforma web voltada para escritórios de advocacia,
+desenvolvida com o objetivo de centralizar o gerenciamento de clientes, processos,
+prazos, diligências e atividades. O sistema foi estruturado para reunir essas
+informações em uma única plataforma, facilitando o acompanhamento das atividades
+relacionadas aos casos.
+
+O \textit{backend} do JurisFlow foi desenvolvido utilizando JavaScript e Node.js,
+responsáveis pela implementação da aplicação e de suas funcionalidades. Para o
+armazenamento dos dados, foi utilizado o PostgreSQL, executado em um ambiente
+conteinerizado por meio do Docker.
+
+\subsection{PERFIS DE USUÁRIOS E CONTROLE DE ACESSO}
+
+O sistema foi estruturado considerando diferentes níveis de acesso, relacionados
+às permissões atribuídas a cada perfil de usuário. Os perfis identificados são:
+
+\begin{itemize}
+  \item \textbf{Administrador Chefe:} responsável por gerenciar a equipe,
+        configurar os parâmetros globais e cadastrar usuários.
+  \item \textbf{Advogado:} usuário responsável pelo cadastro de clientes e pelo
+        gerenciamento dos casos.
+  \item \textbf{Assistente Jurídico:} auxilia nas atividades técnicas e jurídicas,
+        possuindo algumas permissões semelhantes às do advogado.
+  \item \textbf{Secretaria:} perfil destinado ao suporte operacional, consultas e
+        rotinas administrativas.
+  \item \textbf{Estagiário:} usuário destinado às atividades de apoio e
+        aprendizado técnico-operacional.
+\end{itemize}
+
+\subsection{REQUISITOS FUNCIONAIS (RF) E NÃO FUNCIONAIS (RNF)}
+
+% ==========================================
+% MÓDULO 01
+% ==========================================
+\begin{quadro}[H]
+\centering
+\caption{Requisitos Funcionais - Módulo 01: Cadastro de Usuários e Perfis}
+\label{qua:rf-modulo01}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{|l|l|X|}
+\hline
+\textbf{ID} & \textbf{Requisito} & \textbf{Descrição} \\
+\hline
+RF01.01 & Cadastro de Usuários & O sistema deve permitir que apenas o perfil Administrador Chefe realize o cadastro de novos usuários. \\
+\hline
+RF01.02 & Vinculação de Perfis & Cada usuário cadastrado deve estar obrigatoriamente vinculado a um ID de perfil, que define suas permissões. \\
+\hline
+RF01.03 & Autenticação Inicial & O sistema deve permitir o login do usuário por meio de credenciais de login e senha criadas no módulo inicial, sem obrigatoriedade de utilização de e-mail. \\
+\hline
+\end{tabularx}
+\fonte{Elaborado pelos autores (2026).}
+\end{quadro}
+
+% ==========================================
+% MÓDULO 02
+% ==========================================
+\begin{quadro}[H]
+\centering
+\caption{Requisitos Funcionais - Módulo 02: Cadastro de Clientes}
+\label{qua:rf-modulo02}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{|l|l|X|}
+\hline
+\textbf{ID} & \textbf{Requisito} & \textbf{Descrição} \\
+\hline
+RF02.01 & Restrição de Cadastro & Apenas usuários com perfil de Advogado ou Assistente Jurídico podem cadastrar novos clientes no sistema. \\
+\hline
+RF02.02 & Tipos de Clientes & O sistema deve permitir o cadastro de dois tipos de clientes: Pessoa Física (CPF) ou Pessoa Jurídica (CNPJ). \\
+\hline
+RF02.03 & Consulta Geral & Todos os usuários do sistema, independentemente do nível de acesso, devem poder consultar os clientes cadastrados. \\
+\hline
+\end{tabularx}
+\fonte{Elaborado pelos autores (2026).}
+\end{quadro}
+
+% ==========================================
+% MÓDULO 03
+% ==========================================
+\begin{quadro}[H]
+\centering
+\caption{Requisitos Funcionais - Módulo 03: Gerenciamento de Casos e Processos}
+\label{qua:rf-modulo03}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{|l|l|X|}
+\hline
+\textbf{ID} & \textbf{Requisito} & \textbf{Descrição} \\
+\hline
+RF03.01 & Criação Automática do Caso & Após o cadastro de um cliente, o sistema deve criar automaticamente um Caso vinculado ao usuário responsável pelo cadastro, sendo este um Advogado ou Assistente Jurídico. \\
+\hline
+RF03.02 & Ciclo de Vida e Fases & O sistema deve classificar a fase do caso com base na existência de um processo: \newline \textbf{Fase Pré-Processual (Automática):} atribuída quando o Caso não possuir um processo vinculado. \newline \textbf{Fase Processual (Administrativa ou Judicial):} atribuída quando um processo for vinculado ao Caso. \\
+\hline
+RF03.03 & Situação do Processo & Para as fases Administrativa e Judicial, o sistema deve exigir o preenchimento da situação atualizada do processo em relação aos sistemas externos, como Projudi e Eproc. \\
+\hline
+\end{tabularx}
+\fonte{Elaborado pelos autores (2026).}
+\end{quadro}
+
+% ==========================================
+% MÓDULO 04
+% ==========================================
+\begin{quadro}[H]
+\centering
+\caption{Requisitos Funcionais - Módulo 04: Central de Diligências, Atividades e Prazos}
+\label{qua:rf-modulo04}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{|l|l|X|}
+\hline
+\textbf{ID} & \textbf{Requisito} & \textbf{Descrição} \\
+\hline
+RF04.01 & Primeira Diligência & No momento da criação de um novo Caso, o sistema deve exigir a criação da primeira Diligência/Atividade, que poderá ser atribuída a qualquer usuário do sistema. \\
+\hline
+RF04.02 & Prazo Padrão (\textit{Fallback}) & O sistema deve aplicar automaticamente um prazo de 30 dias para a execução da diligência ou tarefa caso o criador não informe um prazo maior. \\
+\hline
+RF04.03 & Alerta de Audiência & Se a diligência for categorizada como ``Audiência'', o sistema deve exigir e exibir o horário específico juntamente com a data de vencimento. \\
+\hline
+\end{tabularx}
+\fonte{Elaborado pelos autores (2026).}
+\end{quadro}
+
+% ==========================================
+% MÓDULO 05
+% ==========================================
+\begin{quadro}[H]
+\centering
+\caption{Requisitos Funcionais - Módulo 05: Notificações e Alertas Preventivos}
+\label{qua:rf-modulo05}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{|l|l|X|}
+\hline
+\textbf{ID} & \textbf{Requisito} & \textbf{Descrição} \\
+\hline
+RF05.01 & Régua Regressiva & O sistema deve disparar notificações automáticas para os responsáveis de acordo com uma régua de tempo regressiva, nos períodos de 7 dias, 3 dias e 1 dia antes do vencimento, bem como no dia do vencimento. \\
+\hline
+RF05.02 & Casos Inativos & O sistema deve verificar o banco de dados e emitir um alerta automático para qualquer caso que esteja sem atualizações ou movimentações há mais de 30 dias. \\
+\hline
+\end{tabularx}
+\fonte{Elaborado pelos autores (2026).}
+\end{quadro}
+
+% ==========================================
+% MÓDULO 06
+% ==========================================
+\begin{quadro}[H]
+\centering
+\caption{Requisitos Funcionais - Módulo 06: Painel Gerencial (Indicadores)}
+\label{qua:rf-modulo06}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{|l|l|X|}
+\hline
+\textbf{ID} & \textbf{Requisito} & \textbf{Descrição} \\
+\hline
+RF06.01 & Dashboard de Produtividade & O sistema deve disponibilizar uma tela exclusiva para o perfil Administrador Chefe, contendo métricas relacionadas à produtividade da equipe e ao status de cumprimento das tarefas. \\
+\hline
+\end{tabularx}
+\fonte{Elaborado pelos autores (2026).}
+\end{quadro}
+
+% ==========================================
+% REQUISITOS NÃO FUNCIONAIS
+% ==========================================
+\begin{quadro}[H]
+\centering
+\caption{Requisitos Não Funcionais (RNF)}
+\label{qua:rnf}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{|l|l|X|}
+\hline
+\textbf{ID} & \textbf{Requisito} & \textbf{Descrição} \\
+\hline
+RNF 01 & Segurança e LGPD & O sistema deve estruturar suas tabelas e rotas de acordo com os níveis de acesso definidos para os usuários, considerando os requisitos relacionados à Lei Geral de Proteção de Dados (LGPD). \\
+\hline
+RNF 02 & Centralização de Informação & As ações, alterações e responsabilidades relacionadas aos casos devem gerar registros de log, permitindo o acompanhamento do histórico de atividades e das alterações realizadas no sistema. \\
+\hline
+\end{tabularx}
+\fonte{Elaborado pelos autores (2026).}
+\end{quadro}
+
+\subsection{MODELAGEM DO SISTEMA E DO BANCO DE DADOS}
+
+Após a definição dos requisitos, realizou-se a modelagem do banco de dados
+utilizando a ferramenta dbdiagram.io, com o propósito de construir o Diagrama de
+Entidade-Relacionamento (DER). Essa etapa permitiu representar as entidades, seus
+atributos e os relacionamentos necessários ao funcionamento da plataforma.
+
+O diagrama foi utilizado para estruturar os dados relacionados a usuários, perfis,
+clientes, pastas, processos, diligências e atividades, estabelecendo os
+relacionamentos entre essas entidades. A modelagem também considerou as regras de
+acesso e as relações necessárias para o gerenciamento dos casos jurídicos.
+
+\begin{figure}[H]
+  \caption{Diagrama de Entidade-Relacionamento.}
+  \label{fig:der}
+  \centering
+  \includegraphics[width=\textwidth]{04-figuras/6.jpg}
+  \fonte{Elaborado pelos autores (2026).}
+\end{figure}
+
+A modelagem física foi posteriormente implementada no PostgreSQL, permitindo que
+a estrutura projetada fosse utilizada pela aplicação. Essa etapa teve como
+finalidade estabelecer a estrutura do banco de dados utilizada pelas
+funcionalidades implementadas no sistema (Figura~\ref{fig:der}).
+
+\section{IMPLEMENTAÇÃO E VERIFICAÇÃO DAS FUNCIONALIDADES}
+
+\subsection{MÉTODO DE IMPLEMENTAÇÃO}
+
+O desenvolvimento do JurisFlow foi organizado em etapas, iniciando pela definição
+do problema e das funcionalidades necessárias ao sistema, seguida pela análise dos
+requisitos, modelagem do banco de dados e implementação do módulo inicial. O
+processo iniciou-se com a definição da proposta da plataforma e das funcionalidades
+consideradas necessárias para atender às demandas identificadas no contexto dos
+escritórios de advocacia. Entre as funcionalidades inicialmente estabelecidas estão
+o gerenciamento de usuários e perfis, cadastro de clientes, gerenciamento de pastas
+e casos, controle de processos, controle de prazos e diligências, notificações e
+histórico de atividades.
+
+Durante o desenvolvimento, o escopo foi revisado para priorizar as funcionalidades
+consideradas essenciais para a implementação inicial. Como resultado desse
+refinamento, algumas funcionalidades foram retiradas ou postergadas, entre elas a
+integração com Inteligência Artificial, o sistema de backup de documentos e o login
+utilizando e-mail.
+
+A metodologia adotada foi estruturada de maneira incremental, permitindo que as
+funcionalidades fossem desenvolvidas e verificadas progressivamente. O processo
+contemplou as seguintes etapas: levantamento e organização dos requisitos,
+modelagem do sistema e do banco de dados, desenvolvimento, controle das alterações
+e verificação das funcionalidades implementadas.
+
+A implementação ocorreu de forma incremental, sendo a estruturação dos perfis e o
+cadastro de usuários e clientes algumas das primeiras funcionalidades desenvolvidas.
+Essas funcionalidades foram utilizadas para verificar a comunicação entre a
+aplicação, as rotas da API e a estrutura de dados definida para o sistema.
+
+\subsection{VERIFICAÇÃO DO MÓDULO DE PERFIS}
+
+Como parte da implementação do controle de acesso, a primeira etapa de testes
+consistiu na validação da rota responsável pelo gerenciamento de perfis
+(\textit{roles}). Utilizando a extensão Thunder Client no Visual Studio Code,
+realizou-se uma requisição HTTP do tipo POST direcionada ao endpoint
+\texttt{/perfil}, conforme ilustrado na Figura~\ref{fig:teste-perfil}.
+
+No corpo da requisição (\textit{Request Body}), foi enviado um objeto em formato
+JSON contendo o atributo \texttt{"nome": "Advogado"}. A API respondeu com o código
+de status 201 Created, indicando a criação do registro. O JSON de retorno
+(\textit{Response}) apresenta o identificador \texttt{"id": 1} atribuído ao perfil,
+além das datas de criação e modificação. Na área inferior da interface, os logs do
+terminal do servidor apresentam a execução da operação de persistência realizada
+pelo ORM, incluindo a instrução SQL correspondente ao cadastro do perfil.
+Posteriormente, o perfil é associado ao nível de acesso dos usuários, permitindo
+que as permissões sejam relacionadas ao perfil cadastrado.
+
+\begin{figure}[H]
+  \caption{Teste de requisição POST para criação do perfil de Advogado no Thunder Client.}
+  \label{fig:teste-perfil}
+  \centering
+  \includegraphics[width=0.9\textwidth]{04-figuras/7.jpg}
+  \fonte{Elaborado pelos autores (2026).}
+\end{figure}
+
+\subsection{VERIFICAÇÃO DO MÓDULO DE CLIENTES}
+
+Dando continuidade aos testes e à verificação das regras de negócio, foi realizada
+a validação do fluxo de cadastro de clientes, conforme apresentado na
+Figura~\ref{fig:teste-cliente}. Utilizando o método POST direcionado ao endpoint
+\texttt{/cliente}, o teste consistiu no cadastramento do cliente ``João da Silva'',
+classificado no sistema como Pessoa Física (\texttt{"tipo\_pessoa": "física"}),
+sendo necessário o preenchimento do campo correspondente ao CPF.
+
+\begin{figure}[H]
+  \caption{Teste de requisição POST para criação do cliente no Thunder Client.}
+  \label{fig:teste-cliente}
+  \centering
+  \includegraphics[width=0.9\textwidth]{04-figuras/8.jpg}
+  \fonte{Elaborado pelos autores (2026).}
+\end{figure}
+
+A API processou a requisição e retornou o código de status 201 Created, com tempo
+de resposta de 103 ms. No JSON de resposta (\textit{Response Body}), verifica-se o
+sucesso da operação por meio do parâmetro \texttt{"status": true} e da geração do
+identificador \texttt{"id": 1}. Como o registro foi definido como pessoa física,
+o campo \texttt{"cnpj"} foi retornado como \texttt{null}. Além disso, o sistema
+registrou as propriedades de auditoria temporal \texttt{"createdAt"} e
+\texttt{"updatedAt"}. Nos logs do terminal, a instrução SQL executada pelo ORM
+demonstra a persistência do registro na tabela correspondente.
+
+\subsection{VERIFICAÇÃO DO MÓDULO DE PASTAS JURÍDICAS}
+
+A etapa seguinte consistiu no teste do módulo de gerenciamento de pastas jurídicas.
+Utilizando o método POST direcionado ao endpoint \texttt{/pasta}, realizou-se a
+simulação da abertura de uma nova pasta jurídica, conforme ilustrado na
+Figura~\ref{fig:teste-pasta}.
+
+\begin{figure}[H]
+  \caption{Teste de requisição POST para abertura e vinculação de pasta jurídica no Thunder Client.}
+  \label{fig:teste-pasta}
+  \centering
+  \includegraphics[width=0.9\textwidth]{04-figuras/9.jpg}
+  \fonte{Elaborado pelos autores (2026).}
+\end{figure}
+
+No corpo da requisição (\textit{Request Body}), foi enviado um objeto em formato
+JSON contendo os parâmetros de identificação e classificação da demanda: o número
+de controle interno (\texttt{"numero": "PASTA-001"}), a área do direito
+correspondente (\texttt{"area\_direito": "Trabalhista"}), o estado inicial do
+processo (\texttt{"status": "aberta"}) e o nível de urgência
+(\texttt{"prioridade": "media"}). Para estabelecer o relacionamento com o cliente
+cadastrado anteriormente, a propriedade \texttt{"cliente\_id": 1} foi enviada no
+JSON, vinculando a pasta ao cliente ``João da Silva''.
+
+A API concluiu o processamento com sucesso em 86 ms, retornando o código de status
+201 Created. O JSON de resposta confirma a geração do identificador \texttt{"id": 1}
+para o novo registro, além do preenchimento das propriedades de auditoria temporal
+\texttt{"createdAt"} e \texttt{"updatedAt"}. Nos logs do terminal do servidor, é
+apresentada a execução da operação de persistência realizada pelo ORM, incluindo a
+instrução SQL correspondente ao cadastro da pasta. Esse teste permitiu verificar o
+funcionamento da persistência dos dados da pasta e o relacionamento, por meio de
+chave estrangeira, entre as entidades de clientes e pastas.
+
+\subsection{VERIFICAÇÃO DO MÓDULO DE CASOS}
+
+Em seguida, realizou-se o teste do módulo de gerenciamento de casos vinculados a
+uma pasta. Utilizando o método POST direcionado ao endpoint \texttt{/caso},
+simulou-se o registro detalhado de uma ação judicial, conforme ilustrado na
+Figura~\ref{fig:teste-caso}.
+
+\begin{figure}[H]
+  \caption{Teste de requisição POST para inserção e vinculação de caso jurídico no Thunder Client.}
+  \label{fig:teste-caso}
+  \centering
+  \includegraphics[width=0.9\textwidth]{04-figuras/10.jpg}
+  \fonte{Elaborado pelos autores (2026).}
+\end{figure}
+
+No corpo da requisição (\textit{Request Body}), foi estruturado um objeto JSON
+contendo as propriedades do caso, incluindo o título da demanda
+(\texttt{"titulo": "Ação trabalhista - horas extras"}), a etapa processual
+(\texttt{"fase": "inicial"}) e o estado atual de movimentação
+(\texttt{"status": "ativo"}). Para estabelecer os relacionamentos com os registros
+cadastrados anteriormente, foram enviados os atributos \texttt{"pasta\_id": 1},
+associando o caso à pasta criada no teste anterior, e
+\texttt{"responsavel\_principal\_id": 1}, identificando o profissional responsável.
+
+O servidor processou a requisição em 95 ms e retornou o código de status 201 Created.
+O JSON de resposta confirma a gravação do registro, com a atribuição automática do
+\texttt{"id": 1} e o preenchimento dos campos de auditoria \texttt{"createdAt"} e
+\texttt{"updatedAt"}. Na parte inferior da interface, os logs do terminal do
+servidor apresentam a operação de persistência realizada pelo ORM e a instrução SQL
+correspondente. Esse teste permitiu verificar o funcionamento dos relacionamentos
+entre as entidades de pastas, casos e profissionais responsáveis.
+
+\subsection{VALIDAÇÃO DO MÓDULO DE PROCESSOS JUDICIAIS}
+
+Na sequência dos testes, realizou-se a validação do módulo responsável pelo registro
+dos dados específicos do processo judicial. Por meio da execução do método POST
+direcionado ao endpoint \texttt{/processo}, simulou-se a inserção das informações
+do processo, conforme ilustrado na Figura~\ref{fig:teste-processo}.
+
+\begin{figure}[H]
+  \caption{Teste de requisição POST para inserção e vinculação de processo oficial no Thunder Client.}
+  \label{fig:teste-processo}
+  \centering
+  \includegraphics[width=0.9\textwidth]{04-figuras/11.jpg}
+  \fonte{Elaborado pelos autores (2026).}
+\end{figure}
+
+No corpo da requisição (\textit{Request Body}), foi estruturado um objeto JSON
+contendo os dados de identificação do processo: o número de distribuição
+(\texttt{"numero\_processo": "0001234-56.2026.8.16.0001"}), a localidade de
+tramitação (\texttt{"comarca": "Curitiba"}), o juízo competente
+(\texttt{"vara": "1ª Vara Cível"}) e a situação atual
+(\texttt{"situacao": "Em andamento"}). Também foram incluídas as chaves estrangeiras
+\texttt{"caso\_id": 1}, vinculando o registro ao caso criado anteriormente, e
+\texttt{"responsavel\_id": 1}, associando o processo ao profissional responsável
+pelo acompanhamento do caso.
+Com este teste, consolida-se o fluxo de amarração de dados relacionais e a persistência de toda a árvore 
+hierárquica que compõe o módulo jurídico da aplicação.
+
+\subsection{VERIFICAÇÃO DO MÓDULO DE ALERTAS E NOTIFICAÇÕES}
+Para concluir o ciclo de testes dos módulos de controle, realizou-se a validação do endpoint responsável 
+pelo gerenciamento de avisos e prazos operacionais. Utilizando o método POST direcionado à rota 
+http://localhost:3000/alerta, simulou-se o disparo automatizado de uma notificação do sistema, conforme 
+ilustrado na \ref{fig:teste-processo}.
+
+\begin{figure}[H]
+  \caption{Teste de requisição POST para inserção e vinculação de processo oficial no Thunder Client.}
+  \label{fig:teste-processo}
+  \centering
+  \includegraphics[width=0.9\textwidth]{04-figuras/12.jpg}
+  \fonte{Elaborado pelos autores (2026).}
+\end{figure}
+
+
+O corpo da requisição define a classificação do alerta: a natureza do evento ("tipo": "prazo\_vencendo") e a referência do mapeamento relacional, indicando a tabela de origem ("entidade": "diligencia") e o identificador do registro vinculado ("entidade\_id": 1). Essa estrutura permite que o sistema vincule um alerta de maneira flexível a diferentes eventos do fluxo jurídico, como audiências, tarefas ou diligências específicas.
+
+A API processou a requisição em 46 ms e retornou o código de status 201 Created. No JSON de resposta (Response Body), confirma-se a gravação dos dados com a geração automática do "id": 1, o valor padrão do estado do alerta como não solucionado ("resolvido": false) e a inserção das datas "createdAt" e "updatedAt".
+
+Na parte inferior do console, os logs de execução do banco de dados evidenciam que o ORM realizou o mapeamento do objeto para o banco relacional, apresentando a instrução SQL: INSERT INTO "alertas" ("id","tipo","entidade","entidade\_id","resolvido","created\_at","updated\_at") VALUES (...) RETURNING .... Esse resultado consolida a eficácia dos mecanismos de gatilho e auditoria necessários ao funcionamento dos alertas na plataforma.
+
+A verificação do sistema foi realizada considerando as funcionalidades implementadas e sua correspondência com os requisitos definidos para o projeto. Os testes têm como finalidade identificar inconsistências no funcionamento do sistema e verificar a aderência aos requisitos especificados.
