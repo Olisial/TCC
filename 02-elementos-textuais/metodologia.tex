@@ -1,6 +1,5 @@
 \chapter{MATERIAIS E MÉTODOS}
-Esta seção apresenta os materiais e os métodos utilizados no desenvolvimento do JurisFlow, uma plataforma web destinada ao gerenciamento de informações e atividades de escritórios de advocacia. São descritos o ambiente tecnológico utilizado, as etapas adotadas durante o desenvolvimento, o levantamento e a organização dos requisitos, a modelagem do banco de dados, a implementação do módulo inicial e os procedimentos utilizados para verificação do sistema.
-A definição dos materiais e métodos foi realizada considerando as funcionalidades estabelecidas na proposta do projeto e o refinamento do escopo realizado durante o desenvolvimento. O sistema foi planejado para centralizar informações relacionadas a usuários, clientes, pastas, processos, diligências, prazos, notificações e histórico de atividades, buscando proporcionar maior organização e controle das informações do escritório.
+Esta seção apresenta os materiais e os métodos utilizados no desenvolvimento do JurisFlow, uma plataforma web destinada ao gerenciamento de informações e atividades de escritórios de advocacia. São descritos o ambiente tecnológico utilizado, as etapas adotadas durante o desenvolvimento, o levantamento e a organização dos requisitos, a modelagem do banco de dados, a implementação do módulo inicial e os procedimentos utilizados para verificação do sistema. A definição dos materiais e métodos foi realizada considerando as funcionalidades estabelecidas na proposta do projeto e o refinamento do escopo realizado durante o desenvolvimento. O sistema foi planejado para centralizar informações relacionadas a usuários, clientes, pastas, processos, diligências, prazos, notificações e histórico de atividades, buscando proporcionar maior organização e controle das informações do escritório.
 
 \section{TECNOLOGIAS DE DESENVOLVIMENTO}
 
@@ -9,7 +8,7 @@ JavaScript como principal linguagem para implementação da lógica da aplicaç�
 A escolha da linguagem está relacionada à sua ampla utilização no desenvolvimento
 web e à possibilidade de empregá-la tanto no \textit{frontend} quanto no
 \textit{backend}, permitindo a utilização de uma mesma linguagem em diferentes
-partes da aplicação. Conforme apontam Cruz et al. (2018), o JavaScript deixou de
+partes da aplicação. Conforme apontam \citeonline{cruz2018}, o JavaScript deixou de
 ser utilizado exclusivamente em aplicações executadas em navegadores e passou a
 ser empregado também no desenvolvimento de outros tipos de software, incluindo
 aplicações para dispositivos móveis e computadores. Essa característica contribui
@@ -146,23 +145,11 @@ o acompanhamento contínuo dos casos e para a redução de processos sem movimen
   \fonte{Elaborado pelos autores (2026).}
 \end{figure}
 
-Para encerrar a apresentação dos casos de uso, o quarto diagrama representa o
-módulo de Painel Gerencial (Métricas) do JurisFlow, destinado ao acompanhamento
-e à supervisão das atividades do escritório. Nesse módulo, o Administrador Chefe
-é o ator responsável por acessar a funcionalidade Visualizar Dashboard de
-Produtividade, por meio da qual são disponibilizadas informações relacionadas ao
-desempenho da equipe e ao andamento das atividades (Figura~\ref{fig:casos-uso-painel}).
+Para encerrar a apresentação dos casos de uso, o quarto diagrama representa omódulo de Painel Gerencial (Métricas) do JurisFlow, destinado ao acompanhamento e à supervisão das atividades do escritório. Nesse módulo, o Administrador Chefe é o ator responsável por acessar a funcionalidade Visualizar Dashboard de Produtividade, por meio da qual são disponibilizadas informações relacionadas ao desempenho da equipe e ao andamento das atividades (Figura~\ref{fig:casos-uso-painel}).
 
 \subsection{ORGANIZAÇÃO DAS ATIVIDADES (Trello/Kanban)}
 
-O gerenciamento de tarefas, o acompanhamento dos prazos e a distribuição das
-responsabilidades da equipe foram realizados por meio da plataforma Trello. A
-organização das atividades seguiu o modelo de quadro Kanban, estruturado em
-colunas como ``Documentos Introdutórios'', ``Desenvolvimento'', ``Diagramas'' e
-``Concluído''. Essa organização permitiu acompanhar o andamento das atividades e
-das entregas relacionadas ao banco de dados, aos protótipos de tela e à elaboração
-do artigo acadêmico. A Figura~\ref{fig:trello} apresenta o quadro utilizado pela
-equipe para a organização e o acompanhamento das atividades do projeto.
+O gerenciamento de tarefas, o acompanhamento dos prazos e a distribuição das responsabilidades da equipe foram realizados por meio da plataforma Trello. A organização das atividades seguiu o modelo de quadro Kanban, estruturado em colunas como ``Documentos Introdutórios'', ``Desenvolvimento'', ``Diagramas'' e ``Concluído''. Essa organização permitiu acompanhar o andamento das atividades e das entregas relacionadas ao banco de dados, aos protótipos de tela e à elaboração do artigo acadêmico. A Figura~\ref{fig:trello} apresenta o quadro utilizado pela equipe para a organização e o acompanhamento das atividades do projeto.
 
 \begin{figure}[H]
   \caption{Quadro Kanban utilizado no Trello.}
@@ -598,7 +585,7 @@ ilustrado na \ref{fig:teste-processo}.
 
 \begin{figure}[H]
   \caption{Teste de requisição POST para inserção e vinculação de processo oficial no Thunder Client.}
-  \label{fig:teste-processo}
+  \label{fig:teste-12}
   \centering
   \includegraphics[width=0.9\textwidth]{04-figuras/12.jpg}
   \fonte{Elaborado pelos autores (2026).}
