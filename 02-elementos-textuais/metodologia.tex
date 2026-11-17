@@ -1,5 +1,5 @@
 \chapter{MATERIAIS E MÉTODOS}
-Esta seção apresenta os materiais e os métodos utilizados no desenvolvimento do JurisFlow, uma plataforma web destinada ao gerenciamento de informações e atividades de escritórios de advocacia. São descritos o ambiente tecnológico utilizado, as etapas adotadas durante o desenvolvimento, o levantamento e a organização dos requisitos, a modelagem do banco de dados, a implementação do módulo inicial e os procedimentos utilizados para verificação do sistema. A definição dos materiais e métodos foi realizada considerando as funcionalidades estabelecidas na proposta do projeto e o refinamento do escopo realizado durante o desenvolvimento. O sistema foi planejado para centralizar informações relacionadas a usuários, clientes, pastas, processos, diligências, prazos, notificações e histórico de atividades, buscando proporcionar maior organização e controle das informações do escritório.
+Esta seção apresenta os materiais e os métodos utilizados no desenvolvimento do JurisFlow, uma plataforma web destinada ao gerenciamento de informações e atividades de escritórios de advocacia. São descritos o ambiente tecnológico utilizado, as etapas adotadas durante o desenvolvimento, o levantamento e a organização dos requisitos, a modelagem do banco de dados, a implementação do módulo inicial e os procedimentos utilizados para verificação do sistema. A definição dos materiais e métodos foi realizada considerando as funcionalidades estabelecidas na proposta do projeto e o refinamento do escopo realizado durante o desenvolvimento. O sistema foi planejado para centralizar informações relacionadas a usuários, clientes, processos, diligências, prazos, notificações e histórico de atividades, buscando proporcionar maior organização e controle das informações do escritório.
 
 \section{TECNOLOGIAS DE DESENVOLVIMENTO}
 
@@ -33,17 +33,15 @@ com JavaScript e Node.js. Também foram utilizados seus recursos de integração
 o Git, contribuindo para o controle e a organização do código durante o
 desenvolvimento do projeto.
 
-Para o controle de versão e a hospedagem do código-fonte, foi utilizado o GitHub
-em conjunto com o Git. A ferramenta possibilitou centralizar os arquivos do projeto
-e organizar o desenvolvimento colaborativo por meio do controle de versões. Também
-foram utilizadas ramificações (\textit{branches}) para organizar as alterações
-realizadas durante o desenvolvimento e facilitar o gerenciamento das diferentes
-funcionalidades da aplicação.
+Para o controle de versão e a hospedagem do código-fonte, foi utilizado o GitHub em conjunto com o Git. 
+Essa plataforma possibilitou centralizar os arquivos do projeto e organizar o desenvolvimento colaborativo 
+por meio do controle de versões. Também foram utilizadas ramificações (\textit{branches}) para organizar as 
+alterações realizadas durante o desenvolvimento e facilitar o gerenciamento das diferentes funcionalidades da aplicação.
 
 Para o armazenamento e gerenciamento dos dados, foi utilizado o sistema gerenciador
 de banco de dados PostgreSQL. A escolha de um banco de dados relacional está
 relacionada à necessidade de estruturar e relacionar informações como usuários,
-clientes, pastas, processos e diligências. Conforme aponta \citeonline{carvalho2017}, o
+clientes, processos e diligências. Conforme aponta \citeonline{carvalho2017}, o
 PostgreSQL apresenta características relacionadas à integridade, segurança e
 consistência dos dados, aspectos relevantes para sistemas que trabalham com
 diferentes entidades relacionadas.
@@ -62,7 +60,7 @@ Para auxiliar na modelagem e na representação da arquitetura do sistema, foi
 utilizada a ferramenta PlantUML para a elaboração dos diagramas de casos de uso.
 Esses diagramas foram utilizados para representar, de forma visual, as principais
 funcionalidades do JurisFlow e sua interação com os diferentes usuários do sistema.
-Foram elaborados quatro diagramas de casos de uso, organizados de acordo com as
+Foram elaborados três diagramas de casos de uso, organizados de acordo com as
 funcionalidades e os diferentes contextos de utilização da plataforma, permitindo
 representar o escopo do sistema de forma estruturada e facilitar a compreensão das
 interações entre os usuários e as funcionalidades disponibilizadas.
@@ -85,24 +83,6 @@ inserção de nome e senha. Como mecanismo de segurança e rastreabilidade, esse
 processo inclui automaticamente a ação de Gerar Log Auditável, responsável por
 registrar as ações realizadas e o histórico de atividades do usuário no sistema.
 
-\begin{figure}[H]
-  \caption{Diagrama de casos de uso: Gestão de Clientes, Casos e Processos.}
-  \label{fig:casos-uso-clientes}
-  \centering
-  \includegraphics[width=0.9\textwidth]{04-figuras/diagrama2.jpeg}
-  \fonte{Elaborado pelos autores (2026).}
-\end{figure}
-
-Um detalhe importante na modelagem é que tanto o Advogado quanto o Assistente
-Jurídico possuem o mesmo nível de acesso e as mesmas permissões dentro deste
-escopo. Ambos os profissionais podem Atualizar a Situação do Processo, Consultar
-Clientes Cadastrados e iniciar o fluxo de Cadastrar Novo Cliente. Quando um dos
-profissionais realiza o cadastro de um novo cliente, o sistema executa
-obrigatoriamente duas ações: Identificar o Tipo de Cliente, verificando se o
-cadastro corresponde a CPF ou CNPJ, e Criar Caso Automaticamente. Após a criação
-automática do caso, o sistema também realiza a etapa de Classificar a Fase do Caso,
-definindo se o caso se encontra na fase Pré-Processual ou Processual
-(Figura~\ref{fig:casos-uso-clientes}).
 
 \begin{figure}[H]
   \caption{Diagrama de casos de uso: Central de Diligências e Notificações Preventivas.}
@@ -114,8 +94,7 @@ definindo se o caso se encontra na fase Pré-Processual ou Processual
 
 O módulo apresenta dois atores responsáveis pela interação direta com suas
 funcionalidades, além de um ator de destino relacionado à execução de uma das
-ações. Nesse contexto, o Criador da Pasta, representado por um Advogado ou
-Assistente Jurídico, é responsável por executar a ação de Forçar Criação da
+ações. Nesse contexto, o Criador da Pasta, representado por um Advogado, é responsável por executar a ação de Forçar Criação da
 Primeira Diligência, garantindo que, após a criação da pasta, seja registrada a
 primeira atividade relacionada ao caso. O fluxo também contempla duas extensões
 condicionais baseadas em regras de negócio. A primeira é Exigir Horário Específico,
@@ -145,7 +124,7 @@ o acompanhamento contínuo dos casos e para a redução de processos sem movimen
   \fonte{Elaborado pelos autores (2026).}
 \end{figure}
 
-Para encerrar a apresentação dos casos de uso, o quarto diagrama representa omódulo de Painel Gerencial (Métricas) do JurisFlow, destinado ao acompanhamento e à supervisão das atividades do escritório. Nesse módulo, o Administrador Chefe é o ator responsável por acessar a funcionalidade Visualizar Dashboard de Produtividade, por meio da qual são disponibilizadas informações relacionadas ao desempenho da equipe e ao andamento das atividades (Figura~\ref{fig:casos-uso-painel}).
+Para encerrar a apresentação dos casos de uso, o quarto diagrama representa omódulo de Painel Gerencial (Métricas) do JurisFlow, destinado ao acompanhamento e à supervisão das atividades do escritório. Nesse módulo, o Administrador Chefe é o ator responsável por fiscalizar a funcionalidade Visualizar Dashboard de Produtividade, por meio da qual são disponibilizadas informações relacionadas ao desempenho da equipe e ao andamento das atividades (Figura~\ref{fig:casos-uso-painel}).
 
 \subsection{ORGANIZAÇÃO DAS ATIVIDADES (Trello/Kanban)}
 
@@ -221,10 +200,6 @@ O sistema foi estruturado considerando diferentes níveis de acesso, relacionado
         configurar os parâmetros globais e cadastrar usuários.
   \item \textbf{Advogado:} usuário responsável pelo cadastro de clientes e pelo
         gerenciamento dos casos.
-  \item \textbf{Assistente Jurídico:} auxilia nas atividades técnicas e jurídicas,
-        possuindo algumas permissões semelhantes às do advogado.
-  \item \textbf{Secretaria:} perfil destinado ao suporte operacional, consultas e
-        rotinas administrativas.
   \item \textbf{Estagiário:} usuário destinado às atividades de apoio e
         aprendizado técnico-operacional.
 \end{itemize}
@@ -265,7 +240,7 @@ RF01.03 & Autenticação Inicial & O sistema deve permitir o login do usuário p
 \hline
 \textbf{ID} & \textbf{Requisito} & \textbf{Descrição} \\
 \hline
-RF02.01 & Restrição de Cadastro & Apenas usuários com perfil de Advogado ou Assistente Jurídico podem cadastrar novos clientes no sistema. \\
+RF02.01 & Restrição de Cadastro & Apenas usuários com perfil de Advogado pode cadastrar novos clientes no sistema. \\
 \hline
 RF02.02 & Tipos de Clientes & O sistema deve permitir o cadastro de dois tipos de clientes: Pessoa Física (CPF) ou Pessoa Jurídica (CNPJ). \\
 \hline
@@ -289,7 +264,7 @@ RF02.03 & Consulta Geral & Todos os usuários do sistema, independentemente do n
 \hline
 RF03.01 & Criação Automática do Caso & Após o cadastro de um cliente, o sistema deve criar automaticamente um Caso vinculado ao usuário responsável pelo cadastro, sendo este um Advogado ou Assistente Jurídico. \\
 \hline
-RF03.02 & Ciclo de Vida e Fases & O sistema deve classificar a fase do caso com base na existência de um processo: \newline \textbf{Fase Pré-Processual (Automática):} atribuída quando o Caso não possuir um processo vinculado. \newline \textbf{Fase Processual (Administrativa ou Judicial):} atribuída quando um processo for vinculado ao Caso. \\
+RF03.02 & Ciclo de Vida e Fases & O sistema deve classificar a fase do caso com base na existência de um processo: \newline \textbf{Fase Pré-Processual (Automática):} atribuída quando o Caso não possuir um processo vinculado. \newline \textbf{Fase Processual (Judicial):} atribuída quando um processo for vinculado ao Caso. \\
 \hline
 RF03.03 & Situação do Processo & Para as fases Administrativa e Judicial, o sistema deve exigir o preenchimento da situação atualizada do processo em relação aos sistemas externos, como Projudi e Eproc. \\
 \hline
@@ -313,7 +288,6 @@ RF04.01 & Primeira Diligência & No momento da criação de um novo Caso, o sist
 \hline
 RF04.02 & Prazo Padrão (\textit{Fallback}) & O sistema deve aplicar automaticamente um prazo de 30 dias para a execução da diligência ou tarefa caso o criador não informe um prazo maior. \\
 \hline
-RF04.03 & Alerta de Audiência & Se a diligência for categorizada como ``Audiência'', o sistema deve exigir e exibir o horário específico juntamente com a data de vencimento. \\
 \hline
 \end{tabularx}
 \fonte{Elaborado pelos autores (2026).}
@@ -351,7 +325,7 @@ RF05.02 & Casos Inativos & O sistema deve verificar o banco de dados e emitir um
 \hline
 \textbf{ID} & \textbf{Requisito} & \textbf{Descrição} \\
 \hline
-RF06.01 & Dashboard de Produtividade & O sistema deve disponibilizar uma tela exclusiva para o perfil Administrador Chefe, contendo métricas relacionadas à produtividade da equipe e ao status de cumprimento das tarefas. \\
+RF06.01 & Dashboard de Produtividade & O sistema deve disponibilizar uma tela de Dashboard acessível a todos os perfis de usuário. Entretanto, para o perfil Administrador Chefe, essa tela deve apresentar métricas adicionais relacionadas à produtividade da equipe e ao status de cumprimento das tarefas, permitindo que ele fiscalize e acompanhe o desempenho dos demais colaboradores. \\
 \hline
 \end{tabularx}
 \fonte{Elaborado pelos autores (2026).}
@@ -385,7 +359,7 @@ Entidade-Relacionamento (DER). Essa etapa permitiu representar as entidades, seu
 atributos e os relacionamentos necessários ao funcionamento da plataforma.
 
 O diagrama foi utilizado para estruturar os dados relacionados a usuários, perfis,
-clientes, pastas, processos, diligências e atividades, estabelecendo os
+clientes, processos, diligências e atividades, estabelecendo os
 relacionamentos entre essas entidades. A modelagem também considerou as regras de
 acesso e as relações necessárias para o gerenciamento dos casos jurídicos.
 
@@ -412,8 +386,7 @@ requisitos, modelagem do banco de dados e implementação do módulo inicial. O
 processo iniciou-se com a definição da proposta da plataforma e das funcionalidades
 consideradas necessárias para atender às demandas identificadas no contexto dos
 escritórios de advocacia. Entre as funcionalidades inicialmente estabelecidas estão
-o gerenciamento de usuários e perfis, cadastro de clientes, gerenciamento de pastas
-e casos, controle de processos, controle de prazos e diligências, notificações e
+o gerenciamento de usuários e perfis, cadastro de clientes, gerenciamento de casos, controle de processos, controle de prazos e diligências, notificações e
 histórico de atividades.
 
 Durante o desenvolvimento, o escopo foi revisado para priorizar as funcionalidades
