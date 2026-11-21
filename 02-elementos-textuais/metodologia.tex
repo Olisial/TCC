@@ -60,7 +60,7 @@ Para auxiliar na modelagem e na representação da arquitetura do sistema, foi
 utilizada a ferramenta PlantUML para a elaboração dos diagramas de casos de uso.
 Esses diagramas foram utilizados para representar, de forma visual, as principais
 funcionalidades do JurisFlow e sua interação com os diferentes usuários do sistema.
-Foram elaborados três diagramas de casos de uso, organizados de acordo com as
+Os diagrams foram organizados de acordo com as
 funcionalidades e os diferentes contextos de utilização da plataforma, permitindo
 representar o escopo do sistema de forma estruturada e facilitar a compreensão das
 interações entre os usuários e as funcionalidades disponibilizadas.
@@ -79,7 +79,7 @@ cadastro de novos usuários. Nesse processo, o caso de uso de cadastro inclui
 obrigatoriamente a ação de Vincular Perfil e Permissões, identificada pelo ID do
 perfil, garantindo que cada usuário cadastrado tenha as permissões correspondentes
 ao seu perfil de acesso. O Usuário Geral realiza o processo de login por meio da
-inserção de nome e senha. Como mecanismo de segurança e rastreabilidade, esse
+inserção de nome ou e-mail e a senha. Como mecanismo de segurança e rastreabilidade, esse
 processo inclui automaticamente a ação de Gerar Log Auditável, responsável por
 registrar as ações realizadas e o histórico de atividades do usuário no sistema.
 
@@ -106,12 +106,8 @@ diligência seja criada sem uma data de vencimento definida
 (Figura~\ref{fig:casos-uso-diligencias}).
 
 Além dos atores que interagem diretamente com o módulo, existe o ator Sistema
-Automatizado, responsável pela execução de rotinas em segundo plano relacionadas
-ao controle temporal das atividades. Entre suas responsabilidades está Disparar a
-Régua Regressiva de Notificações, enviando alertas preventivos nos períodos de 7,
-3 e 1 dia antes do vencimento, bem como no próprio dia do vencimento. O Sistema
-Automatizado também é responsável por Varrer o Banco e Alertar sobre Pastas
-Inativas, realizando o monitoramento periódico das pastas e processos cadastrados.
+Automatizado, responsável por varrer o banco e alertar sobre 
+inatividade, realizando o monitoramento periódico dos casos e processos cadastrados.
 Quando uma pasta permanece sem atualização por período superior a 30 dias, o
 sistema gera uma notificação para alertar a equipe responsável, contribuindo para
 o acompanhamento contínuo dos casos e para a redução de processos sem movimentação.
@@ -124,7 +120,7 @@ o acompanhamento contínuo dos casos e para a redução de processos sem movimen
   \fonte{Elaborado pelos autores (2026).}
 \end{figure}
 
-Para encerrar a apresentação dos casos de uso, o quarto diagrama representa omódulo de Painel Gerencial (Métricas) do JurisFlow, destinado ao acompanhamento e à supervisão das atividades do escritório. Nesse módulo, o Administrador Chefe é o ator responsável por fiscalizar a funcionalidade Visualizar Dashboard de Produtividade, por meio da qual são disponibilizadas informações relacionadas ao desempenho da equipe e ao andamento das atividades (Figura~\ref{fig:casos-uso-painel}).
+Para encerrar a apresentação dos casos de uso, o último diagrama representa omódulo de Painel Gerencial (Métricas) do JurisFlow, destinado ao acompanhamento e à supervisão das atividades do escritório. Nesse módulo, o Administrador Chefe é o ator responsável por fiscalizar a funcionalidade Visualizar Dashboard de Produtividade, por meio da qual são disponibilizadas informações relacionadas ao desempenho da equipe e ao andamento das atividades (Figura~\ref{fig:casos-uso-painel}).
 
 \subsection{ORGANIZAÇÃO DAS ATIVIDADES (Trello/Kanban)}
 
@@ -154,7 +150,7 @@ quanto do \textit{frontend}, além dos documentos relacionados ao trabalho.
   \caption{Repositório do projeto no GitHub.}
   \label{fig:github}
   \centering
-  \includegraphics[width=0.9\textwidth]{04-figuras/git.jpeg}
+  \includegraphics[width=0.9\textwidth]{04-figuras/git.png}
   \fonte{Elaborado pelos autores (2026).}
 \end{figure}
 
@@ -222,7 +218,7 @@ RF01.01 & Cadastro de Usuários & O sistema deve permitir que apenas o perfil Ad
 \hline
 RF01.02 & Vinculação de Perfis & Cada usuário cadastrado deve estar obrigatoriamente vinculado a um ID de perfil, que define suas permissões. \\
 \hline
-RF01.03 & Autenticação Inicial & O sistema deve permitir o login do usuário por meio de credenciais de login e senha criadas no módulo inicial, sem obrigatoriedade de utilização de e-mail. \\
+RF01.03 & Autenticação Inicial & O sistema deve permitir o login do usuário por meio de credenciais de login e senha criadas no módulo inicial. \\
 \hline
 \end{tabularx}
 \fonte{Elaborado pelos autores (2026).}
@@ -262,7 +258,7 @@ RF02.03 & Consulta Geral & Todos os usuários do sistema, independentemente do n
 \hline
 \textbf{ID} & \textbf{Requisito} & \textbf{Descrição} \\
 \hline
-RF03.01 & Criação Automática do Caso & Após o cadastro de um cliente, o sistema deve criar automaticamente um Caso vinculado ao usuário responsável pelo cadastro, sendo este um Advogado ou Assistente Jurídico. \\
+RF03.01 & Criação Automática do Caso & Após o cadastro de um cliente, o sistema deve criar automaticamente um Caso vinculado ao usuário responsável pelo cadastro, sendo este um Advogado. \\
 \hline
 RF03.02 & Ciclo de Vida e Fases & O sistema deve classificar a fase do caso com base na existência de um processo: \newline \textbf{Fase Pré-Processual (Automática):} atribuída quando o Caso não possuir um processo vinculado. \newline \textbf{Fase Processual (Judicial):} atribuída quando um processo for vinculado ao Caso. \\
 \hline
@@ -298,16 +294,14 @@ RF04.02 & Prazo Padrão (\textit{Fallback}) & O sistema deve aplicar automaticam
 % ==========================================
 \begin{quadro}[H]
 \centering
-\caption{Requisitos Funcionais - Módulo 05: Notificações e Alertas Preventivos}
+\caption{Requisitos Funcionais - Módulo 05: Notificações e Alertas}
 \label{qua:rf-modulo05}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\textwidth}{|l|l|X|}
 \hline
 \textbf{ID} & \textbf{Requisito} & \textbf{Descrição} \\
 \hline
-RF05.01 & Régua Regressiva & O sistema deve disparar notificações automáticas para os responsáveis de acordo com uma régua de tempo regressiva, nos períodos de 7 dias, 3 dias e 1 dia antes do vencimento, bem como no dia do vencimento. \\
-\hline
-RF05.02 & Casos Inativos & O sistema deve verificar o banco de dados e emitir um alerta automático para qualquer caso que esteja sem atualizações ou movimentações há mais de 30 dias. \\
+RF05.01 & Casos Inativos & O sistema deve verificar o banco de dados e emitir um alerta automático para qualquer caso que esteja sem atualizações ou movimentações há mais de 30 dias. \\
 \hline
 \end{tabularx}
 \fonte{Elaborado pelos autores (2026).}
@@ -392,8 +386,7 @@ histórico de atividades.
 Durante o desenvolvimento, o escopo foi revisado para priorizar as funcionalidades
 consideradas essenciais para a implementação inicial. Como resultado desse
 refinamento, algumas funcionalidades foram retiradas ou postergadas, entre elas a
-integração com Inteligência Artificial, o sistema de backup de documentos e o login
-utilizando e-mail.
+integração com Inteligência Artificial, o sistema de backup de documentos.
 
 A metodologia adotada foi estruturada de maneira incremental, permitindo que as
 funcionalidades fossem desenvolvidas e verificadas progressivamente. O processo
@@ -549,27 +542,6 @@ tramitação (\texttt{"comarca": "Curitiba"}), o juízo competente
 pelo acompanhamento do caso.
 Com este teste, consolida-se o fluxo de amarração de dados relacionais e a persistência de toda a árvore 
 hierárquica que compõe o módulo jurídico da aplicação.
-
-\subsection{VERIFICAÇÃO DO MÓDULO DE ALERTAS E NOTIFICAÇÕES}
-Para concluir o ciclo de testes dos módulos de controle, realizou-se a validação do endpoint responsável 
-pelo gerenciamento de avisos e prazos operacionais. Utilizando o método POST direcionado à rota 
-http://localhost:3000/alerta, simulou-se o disparo automatizado de uma notificação do sistema, conforme 
-ilustrado na \ref{fig:teste-processo}.
-
-\begin{figure}[H]
-  \caption{Teste de requisição POST para inserção e vinculação de processo oficial no Thunder Client.}
-  \label{fig:teste-12}
-  \centering
-  \includegraphics[width=0.9\textwidth]{04-figuras/12.jpg}
-  \fonte{Elaborado pelos autores (2026).}
-\end{figure}
-
-
-O corpo da requisição define a classificação do alerta: a natureza do evento ("tipo": "prazo\_vencendo") e a referência do mapeamento relacional, indicando a tabela de origem ("entidade": "diligencia") e o identificador do registro vinculado ("entidade\_id": 1). Essa estrutura permite que o sistema vincule um alerta de maneira flexível a diferentes eventos do fluxo jurídico, como audiências, tarefas ou diligências específicas.
-
-A API processou a requisição em 46 ms e retornou o código de status 201 Created. No JSON de resposta (Response Body), confirma-se a gravação dos dados com a geração automática do "id": 1, o valor padrão do estado do alerta como não solucionado ("resolvido": false) e a inserção das datas "createdAt" e "updatedAt".
-
-Na parte inferior do console, os logs de execução do banco de dados evidenciam que o ORM realizou o mapeamento do objeto para o banco relacional, apresentando a instrução SQL: INSERT INTO "alertas" ("id","tipo","entidade","entidade\_id","resolvido","created\_at","updated\_at") VALUES (...) RETURNING .... Esse resultado consolida a eficácia dos mecanismos de gatilho e auditoria necessários ao funcionamento dos alertas na plataforma.
 
 A verificação do sistema foi realizada considerando as funcionalidades implementadas e sua correspondência com os requisitos definidos para o projeto. Os testes têm como finalidade identificar inconsistências no funcionamento do sistema e verificar a aderência aos requisitos especificados.
 
