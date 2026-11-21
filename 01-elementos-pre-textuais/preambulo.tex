@@ -1,10 +1,4 @@
-%
-% Documento: Preâmbulo + Capa
-%
 
-% -------------------------------
-% Pacotes necessários
-% -------------------------------
 \usepackage{lmodern}
 \usepackage{listings}
 \usepackage{tocloft}
@@ -18,10 +12,7 @@
 % -------------------------------
 \renewcommand{\lstlistingname}{Código}
 
-% Numeração contínua já configurada no estilo.cls
-% (não duplicar aqui)
 
-% Criação da "Lista de Códigos" conforme ABNT
 \begingroup\makeatletter
 \let\newcounter\@gobble
 \let\setcounter\@gobbletwo
@@ -41,7 +32,7 @@
   \oldlstlistoflistings%
   \endgroup}
 
-% Estilo para códigos
+ 
 \lstdefinestyle{master-thesis}{
   basicstyle=\ttfamily\small,
   numbers=left,
@@ -61,7 +52,7 @@
 
 \instituicao{CENTRO UNIVERSITÁRIO DE OURINHOS}
 \departamento{CURSO: ENGENHARIA DE SOFTWARE}
-\titulotb{Plataforma Web para Gestão de Escritórios de Advocacia}
+\titulotb{JurisFlow:Plataforma Web para Gestão de Escritórios de Advocacia}
 
 \nomeautor{%
   \textbf{Gabriel De Oliveira Cordeiro}\\
